@@ -1,2 +1,3 @@
 # vassago
-React tabke renderer for JSON data
+
+React table renderer for JSON data
