@@ -1,42 +1,32 @@
 import * as React from "react"
-import { VgColumn, VgRecord } from "vg"
+import { RowCellClassFn, RowCellClickFn, RowClickFn, RowClassFn, VgColumn } from "vg"
 
-export interface VgRowProps {
-  classPrefix?: string
-  columns: VgColumn[]
-  index: number
-  item: VgRecord
-  cellClass?: (currentClass: string, columnKey: string, rowData: VgRecord) => string
-  rowClass?: (currentClass: string, rowData: VgRecord) => string
-  onClickCell?: (event: any, key: string, rowData: VgRecord) => void
-  onClickRow?: (event: any, rowData: VgRecord) => void
+export interface VgRowProps<T> {
+  columns: VgColumn<T>[], index: number, record: T
+  cellClass?: RowCellClassFn<T>
+  rowClass?: RowClassFn<T>
+  onClickCell?: RowCellClickFn<T>
+  onClickRow?: RowClickFn<T>
 }
 
-export default class VgRow extends React.Component<VgRowProps> {
+export default class VgRow<T> extends React.Component<VgRowProps<T>> {
 
-  private renderCell(item: VgRecord, col: VgColumn) {
-    const {classPrefix, cellClass, onClickCell} = this.props
-    let classes = `${classPrefix}Cell${classPrefix}Cell_${col.key}`
-    if (cellClass) {
-      classes = cellClass(classes, col.key, item)
-    }
+  private renderCell(record: T, column: VgColumn<T>) {
+    const {cellClass, onClickCell} = this.props
     return (
-      <td className={classes} key={col.key}
-        onClick={(e) => onClickCell ? onClickCell(e, col.key, item) : {}}>
-        {col.cell(item, col.key)}
+      <td className={cellClass ? cellClass(record, column) : undefined} key={column.id}
+        onClick={(e) => onClickCell ? onClickCell(record, column, e) : {}}>
+        {column.cellFn(record, column)}
       </td>
     )
   }
 
   public render() {
-    const {classPrefix, index, item, rowClass, onClickRow} = this.props
-    const cells = this.props.columns.map(col => this.renderCell(item, col))
-    let classes = `${classPrefix}Row${classPrefix}${index % 2 ? "Odd" : "Even"}`
-    if (rowClass) {
-      classes = rowClass(classes, item)
-    }
+    const {record, rowClass, onClickRow} = this.props
+    const cells = this.props.columns.map(col => this.renderCell(record, col))
     return (
-      <tr className={classes} onClick={e => onClickRow ? onClickRow(e, item) : {}}>
+      <tr className={rowClass ? rowClass(record) : undefined}
+        onClick={e => onClickRow ? onClickRow(record, e) : {}}>
         {cells}
       </tr>
     )

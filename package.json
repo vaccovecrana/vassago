@@ -7,7 +7,7 @@
   "scripts": {
     "build": "rollup -c",
     "prepare": "npm run build",
-    "postpack": "rm -rfv dist",
+    "postpack": "rm -rfv dist/test",
     "dev": "node webpack.dev.js"
   },
   "repository": {
@@ -28,7 +28,7 @@
   "devDependencies": {
     "@rollup/plugin-typescript": "^6.1.0",
     "express": "^4.17.1",
-    "preact": "^10.0.0",
+    "preact": "10.5.5",
     "rollup": "^2.33.2",
     "ts-loader": "^8.0.0",
     "typescript": "^4.0.0",
