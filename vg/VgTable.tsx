@@ -1,6 +1,6 @@
 import * as React from "react"
 import {
-  RowCellClickFn, RowClickFn, RowHeaderClickFn, RowKeyFn,
+  RowCellClickFn, RowClickFn, RowHeaderClickFn, RowIdFn,
   RowHeaderClassFn, RowHeaderFn, VgColumn, defaultCellFn } from "vg"
 import VgRow, { VgRowProps } from "vg/VgRow"
 
@@ -10,7 +10,7 @@ export interface VgTableProps<T> {
   header?: boolean, headerClass?: RowHeaderClassFn<T>
   noRowsMessage?: string
   headerFn?: RowHeaderFn<T>
-  rowKeyFn: RowKeyFn<T>
+  rowIdFn: RowIdFn<T>
   onClickRow?: RowClickFn<T>
   onClickHeader?: RowHeaderClickFn<T>
   onClickCell?: RowCellClickFn<T>
@@ -42,7 +42,7 @@ export default class VgTable<T> extends React.Component<VgTableProps<T>> {
 
   public render() {
     const cols = this.normalizeColumns()
-    const {classes, header, rows, rowKeyFn, onClickCell, onClickRow} = this.props
+    const {classes, header, rows, rowIdFn: rowKeyFn, onClickCell, onClickRow} = this.props
 
     if (rows.length === 0) {
       return (
@@ -56,7 +56,7 @@ export default class VgTable<T> extends React.Component<VgTableProps<T>> {
 
     const vgRows = this.props.rows.map((item, index) => {
       const rowProps: VgRowProps<T> = {
-        columns: cols, record: item, index, onClickCell, onClickRow
+        columns: cols, record: item, onClickCell, onClickRow
       }
       return <VgRow {...rowProps} key={rowKeyFn(item, index)} />
     })

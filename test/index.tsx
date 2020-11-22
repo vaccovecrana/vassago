@@ -45,7 +45,7 @@ class TestShell extends React.Component<{}, TestShellState> {
           <div className="card-body">
             <VgTable classes="table"
               header headerFn={col => <div>{col.label.toUpperCase()}</div>}
-              rows={items} rowKeyFn={p => p.name}
+              rows={items} rowIdFn={p => p.name}
               onClickHeader={(col, e) => console.log(`Clicked header on: ${json(col)}`)}
               onClickRow={(rec, e) => console.log(`Clicked row: ${json(rec)}`)}
               onClickCell={(rec, col, e) => console.log(`Clicked cell => ${json({ rec, col })}`)}
@@ -55,14 +55,14 @@ class TestShell extends React.Component<{}, TestShellState> {
         <div className="card m8">
           <div className="card-body">
             <VgTable classes="table interactive"
-              header rows={items} rowKeyFn={p => p.name} columns={customCols}
+              header rows={items} rowIdFn={p => p.name} columns={customCols}
               onClickHeader={(col) => this.sortBy(col)}
             />
           </div>
         </div>
         <div className="card m8">
           <div className="card-body">
-            <VgTable classes="table" rows={[]} rowKeyFn={undefined} noRowsMessage="Nothing here?" />
+            <VgTable classes="table" rows={[]} rowIdFn={undefined} noRowsMessage="Nothing here?" />
           </div>
         </div>
       </div>

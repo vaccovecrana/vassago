@@ -2,7 +2,7 @@ import * as React from "react"
 import { RowCellClassFn, RowCellClickFn, RowClickFn, RowClassFn, VgColumn } from "vg"
 
 export interface VgRowProps<T> {
-  columns: VgColumn<T>[], index: number, record: T
+  columns: VgColumn<T>[], record: T
   cellClass?: RowCellClassFn<T>
   rowClass?: RowClassFn<T>
   onClickCell?: RowCellClickFn<T>

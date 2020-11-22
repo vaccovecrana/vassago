@@ -2,7 +2,7 @@ export interface VgColumn<T> {
   id: string, label?: string, cellFn: RowCellFn<T>
 }
 
-export type RowKeyFn<T> =   (record: T, index: number) => string
+export type RowIdFn<T>    = (record: T, index: number) => string
 export type RowClassFn<T> = (record: T) => string
 export type RowClickFn<T> = (record: T, event: any) => void
 
