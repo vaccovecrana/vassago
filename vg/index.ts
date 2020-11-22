@@ -16,5 +16,5 @@ export type RowCellClickFn<T> = (record: T, column: VgColumn<T>, event: any) => 
 
 export const defaultCellFn: RowCellFn<any> = (record, column) => record[column.id]
 
-export { default as VgTable } from "vg/VgTable"
-export { default as VgRow } from "vg/VgRow"
+export { default as VgTable } from "./VgTable"
+export { default as VgRow } from "./VgRow"

@@ -1,6 +1,6 @@
 {
   "name": "@vaccovecrana/vassago",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React table renderer for JSON data",
   "main": "dist/index.js",
   "types": "dist/vg/index.d.ts",

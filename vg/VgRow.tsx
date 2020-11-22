@@ -1,5 +1,5 @@
 import * as React from "react"
-import { RowCellClassFn, RowCellClickFn, RowClickFn, RowClassFn, VgColumn } from "vg"
+import { RowCellClassFn, RowCellClickFn, RowClickFn, RowClassFn, VgColumn } from "."
 
 export interface VgRowProps<T> {
   columns: VgColumn<T>[], record: T

@@ -1,7 +1,7 @@
 import * as React from "react"
 import {
   RowCellClickFn, RowClickFn, RowHeaderClickFn, RowIdFn,
-  RowHeaderClassFn, RowHeaderFn, VgColumn, defaultCellFn } from "vg"
+  RowHeaderClassFn, RowHeaderFn, VgColumn, defaultCellFn } from "."
 import VgRow, { VgRowProps } from "vg/VgRow"
 
 export interface VgTableProps<T> {
